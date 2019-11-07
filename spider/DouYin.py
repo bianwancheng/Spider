@@ -46,7 +46,7 @@ def getVideo(snOrIp, userName):
     d.app_start('com.ss.android.ugc.aweme')
 
     a = 1
-    while a < 2000:
+    while a < 200:
         driver = webdriver.Firefox()
         print('下载第', a, '个视频')
         try:
@@ -93,4 +93,4 @@ def getVideo(snOrIp, userName):
 
 if __name__ == '__main__':
     # 设备ip或者sn号，用户名
-    getVideo('127.0.0.1:62001', '惠子ssica')
+    getVideo('127.0.0.1:62001', '祝晓晗')

@@ -54,7 +54,8 @@ class BiliSearch:
             print(a_list)
             for a in a_list:
                 # 根据you-get下载
-                os.system('you-get -o d:/video/{} {}'.format(input, a))
+                print('you-get -o d:/video/{} http:{}'.format(input, a))
+                os.system('you-get -o d:/video/{} https:{}'.format(input, a))
 
 
 '''
@@ -67,7 +68,7 @@ class BiliNav:
 
     def __init__(self):
         self.shouye_url = 'https://www.bilibili.com'
-        self.Headers={
+        self.Headers = {
             'Origin': 'https://www.bilibili.com',
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
             'Sec-Fetch-Mode': 'cors',
@@ -117,7 +118,7 @@ class BiliNav:
         if not os.path.exists('D:/voide/{}'.format(inputType)):
             os.mkdir('d:/voide/{}'.format(inputType))
         pageNum = driver.find_element_by_xpath('//button[@class="pagination-btn"]').text
-        for page in range(int(pageNum)+1):
+        for page in range(int(pageNum) + 1):
             time.sleep(2)
             a_list = driver.find_elements_by_xpath('//div[@id="videolist_box"]//ul/li//a')
             for href in a_list:
@@ -127,13 +128,12 @@ class BiliNav:
             driver.find_element_by_xpath('//button[@class="nav-btn iconfont icon-arrowdown3"]').click()
 
 
-
-
 if __name__ == '__main__':
     # 通过搜索爬
-    # BiliSearch().getBySearch()
+    BiliSearch().getBySearch()
 
-    title_url = BiliNav().getNav()
-    print(title_url)
-    for i in range(len(title_url)):
-        BiliNav().getVideo(title_url[i][2], title_url[i][1])
+    # 通过nav爬取
+    # title_url = BiliNav().getNav()
+    # print(title_url)
+    # for i in range(len(title_url)):
+    #     BiliNav().getVideo(title_url[i][2], title_url[i][1])
